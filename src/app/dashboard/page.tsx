@@ -27,12 +27,14 @@ export default async function DashBoard() {
         <Button asChild>
         <Link className="flex flex-row justify-between items-center gap-2" href={"/dashboard/products/new"}>New Product <Plus className="font-bold"/> </Link>
         </Button>
-        </div>
+        </div> 
+        <div className="grid grid-cols-2 gap-4">
       {products.map((i) => {
         return (
          <ProductList key={i.id} value={i} ></ProductList>
         );
       })}
+      </div>
     </div>
   );
 }

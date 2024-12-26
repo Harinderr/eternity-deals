@@ -92,7 +92,7 @@ return (
           </FormItem>
         )}
       ></FormField>
-      <Button>Edit Product</Button>
+      <Button type="submit">Edit Product</Button>
     </form>
   </Form>
 </div>

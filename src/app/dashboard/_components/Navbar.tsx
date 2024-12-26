@@ -9,9 +9,9 @@ return (
                <Link className="mr-auto" href={'/'}>
                 <Logo></Logo>
                </Link>
-             <Link className="text-lg" href={'/'}> Products</Link>
-                <Link className="text-lg" href={'/'}> Analytics</Link>
-                <Link className="text-lg" href={'/'}> Subscriptions</Link>
+             <Link className="text-lg" href={'/dashboard'}> Products</Link>
+                <Link className="text-lg" href={`/dashboard/analytics?product=AllProducts&time=last7Days`}> Analytics</Link>
+                <Link className="text-lg" href={'/dashboard/subscriptions'}> Subscriptions</Link>
             <UserButton></UserButton>
             </nav>
         </header>

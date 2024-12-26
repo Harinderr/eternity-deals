@@ -35,7 +35,7 @@ export default function ProductList({
            {value.name}
           </CardTitle>
           <CardDescription>
-            {value.description}
+            {value.description?.substring(0,40).concat('...')}
           </CardDescription>
         </CardHeader>
         <CardContent>
