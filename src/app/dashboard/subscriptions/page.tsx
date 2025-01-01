@@ -18,8 +18,8 @@ const Subscriptions = async () => {
   const productCount = await getProductCount(userId)
  
   return (
-    <div className='container px-12 flex flex-col gap-4 mt-12'>
-      <h1 className='text-2xl font-semibold'>Manage Subscriptions</h1>
+    <div className='sm:container sm:px-12 flex flex-col gap-4 mt-12'>
+      <h1 className='px-4 text-2xl font-semibold'>Manage Subscriptions</h1>
     <Card>
       <CardHeader>
         <CardTitle> Product Limit </CardTitle>
@@ -30,15 +30,15 @@ const Subscriptions = async () => {
       </CardContent>
     </Card>
     <Card className='p-6'>
-      <CardTitle className='m-4 text-2xl font-semibold'>Subscriptions</CardTitle>
+      <CardTitle className='mt-4 mb-2 text-2xl font-semibold'>Subscriptions</CardTitle>
       <form action={
          createCustomerPortalSession
       }>
-        <Button>
+        <Button className='mb-4'>
           Manage Subscription
         </Button>
       </form>
-      <CardContent className='grid grid-cols-2 gap-10'>
+      <CardContent className='grid grid-cols-1 sm:grid-cols-2 gap-10'>
       {subscriptionTiersInOrder.map((t)=>{
       return (
         <PricingCard key={t.name} tier={tier.name} properties={t}></PricingCard>

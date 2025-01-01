@@ -272,7 +272,7 @@ const monthFormatter = new Intl.DateTimeFormat(undefined, {
       .groupBy(CountryGroupTable.name)
       .orderBy(({ views }) => desc(views));
 
-    console.log("ghi", data);
+  
     return data;
   } catch (error) {
     console.error("Error fetching views by country group:", error);

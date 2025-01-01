@@ -24,10 +24,10 @@ export default async function EditProduct({
 const productCustomization = await getProudctCustomization(userId, params.productId)
 if(!productCustomization)  throw new Error('cant reach')
   return (
-    <div className="mt-16 w-full px-12">
+    <div className="mt-16 w-full px-4">
       <div className="flex flex-start flex-row gap-4 py-4">
         <BackButton></BackButton>
-        <h1 className="text-3xl font-semibold">Edit Product</h1>
+        <h1 className="sm:text-3xl text-xl font-semibold">Edit Product</h1>
       </div>
       <Tabs defaultValue={tab} className="">
         <TabsList className="grid h-12 w-full grid-cols-3">

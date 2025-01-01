@@ -38,10 +38,10 @@ export default async function Analytics({
   return (
     <div className="analytics_wrapper container mt-16">
       <h1 className="text-4xl bold">Analytics</h1>
-      <div className="flex flex-row gap-4 my-8 ">
+      <div className="flex sm:flex-row flex-col  gap-4 my-8 ">
         <DropdownMenu>
           <DropdownMenuTrigger>
-            <div className="bg-gray-200 flex flex-row gap-4 border-gray-900 p-4 rounded-lg">
+            <div className="bg-gray-100 flex flex-row justify-between gap-4 border-gray-900 p-4 rounded-lg">
               {searchParams.time ?? "last7Days"} <ChevronDown />
             </div>
           </DropdownMenuTrigger>
@@ -61,7 +61,7 @@ export default async function Analytics({
         </DropdownMenu>
         <DropdownMenu>
           <DropdownMenuTrigger>
-            <div className="bg-gray-200 flex flex-row gap-4 border-gray-900 p-4 rounded-lg">
+            <div className="bg-gray-100 flex flex-row gap-4 justify-between border-gray-900 p-4 rounded-lg">
               {searchParams.product ?? "All Products"}
               <ChevronDown />
             </div>

@@ -72,7 +72,7 @@ const BannerInfo = {country : 'IN',coupon : 'half', discount : 40 }
       <Banner data={watchedValues} BannerInfo={BannerInfo}></Banner>
       { !subTier.canCustomizeBanner &&   <UpgradeAccount></UpgradeAccount>}
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(saveForm)} className="grid grid-cols-2 md:grid-cols-1 gap-2" action="">
+        <form onSubmit={form.handleSubmit(saveForm)} className=" mt-8 grid grid-cols-1 md:grid-cols-2 gap-2" action="">
        
           <FormField
             name="locationMessage"

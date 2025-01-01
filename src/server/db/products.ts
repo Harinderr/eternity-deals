@@ -281,9 +281,13 @@ export async function getProductCountInternals(userId: string):Promise<number> {
 }
 
 
-export async function getProductBanner(productId:string,userId:string,code:string = 'IN') {
+export async function getProductBanner(productId:string,userId:string,code:string = 'IN',requestingUrl:string) {
   //,country  group - discount and coupen, product customixation 
-const country = await db.query.CountryTable.findFirst({
+  const product = await db.query.ProductTable.findFirst({
+    where : ({id,url}) => and(eq(id, productId),eq(url,requestingUrl)) 
+  })
+  if(product == null) return 
+  const country = await db.query.CountryTable.findFirst({
   columns : {
     id : true,
     countryGroupId: true,

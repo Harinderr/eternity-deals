@@ -34,20 +34,24 @@ export async function GET(
   }
 ) {
   const headersMap = headers();
-  const requestingUrl = headersMap.get("referer") || headersMap.get("origin");
+  const url = new URL(req.url)
+  const requestingUrl = url.searchParams.get('source')  || headersMap.get("referer") || headersMap.get("origin")
+  console.log('this is url',requestingUrl)
+  if(requestingUrl == null) return notFound()
   const product = await getProduct(params.productId);
   if (product == null) return notFound()
   const countryCode = getCountryCode(req)
   const getBannerinfo = await getProductBanner(
     product.id,
     product.clerkUserId,
-    countryCode
+    countryCode,
+    requestingUrl
   );
   if (getBannerinfo == null) return notFound();
   let out = await makeHtmlcontent(getBannerinfo);
   if (countryCode == null) return notFound()
     await createProductViewCount({productId :product.id,countryId:getBannerinfo.country.id,userId :product.clerkUserId})
-  return new Response(out, { headers: { "content-type": "text/javascript" } });
+  return new Response(out, { headers: { "content-type": "text/javascript","Access-Control-Allow-Origin": "*", } });
 }
 
 async function makeHtmlcontent(BannerInfo: BannerInfo) {

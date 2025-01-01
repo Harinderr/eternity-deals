@@ -16,10 +16,10 @@ export default async function CreateNewProduct() {
     const productPersmission  =   productCount < subTier.maxNumberOfProducts
     console.log(productPersmission)
 return (
-    <div className="mt-20 container flex flex-col gap-8 ">
+    <div className="mt-20 sm:container flex flex-col gap-8 ">
         <div className=" flex justify-start gap-4 items-center">
          <BackButton></BackButton>
-        <h1 className="text-3xl font-bold"> Create Product</h1>
+        <h1 className="sm:text-3xl text-xl font-bold"> Create Product</h1>
         </div>
       { productPersmission ?  <FormComponent formType="Create Product"/> : <ProductLimit/>}
     </div>

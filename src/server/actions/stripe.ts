@@ -103,7 +103,7 @@ export async function getUserSubscriptionUpgradeSession(
   ) {
     throw new Error();
   }
-
+  console.log('this is tier',subscriptionTiers[tier].stripePriceId)
   const protalSession = await stripe.billingPortal.sessions.create({
     customer: subscription.stripeCustomerId,
     return_url: `${clientEnv.NEXT_PUBLIC_SERVER_URL}/dashboard/subscriptions`,

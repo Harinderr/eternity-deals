@@ -20,7 +20,7 @@ export default function ProductList({
   value,
 }: {
   value: {
-    id : string
+    id: string;
     name: string;
     url: string;
     description: string | null;
@@ -28,57 +28,55 @@ export default function ProductList({
 }) {
   return (
     <>
-      <Card className="flex flex-row justify-between items-start">
-        <div>
-        <CardHeader>
-          <CardTitle>
-           {value.name}
-          </CardTitle>
-          <CardDescription>
-            {value.description?.substring(0,40).concat('...')}
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          {value.url}
-        </CardContent>
+      <Card className="relative overflow-hidden">
+        {/* Dropdown for settings */}
+        <Dialog>
+          <AlertDialog>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button className="rounded-full absolute top-2 right-2" variant={'link'} size={'sm'}>
+                  <EllipsisVertical size={'24px'} />
+                </Button>
+              </DropdownMenuTrigger>
+
+              <DropdownMenuContent className="bg-white">
+                <DropdownMenuLabel>Settings</DropdownMenuLabel>
+                <DropdownMenuItem asChild className="hover:bg-slate-200">
+                  <Link href={`/dashboard/products/${value.id}/edit`}>Edit</Link>
+                </DropdownMenuItem>
+                <DialogTrigger className="w-full">
+                  <DropdownMenuItem className="hover:bg-slate-200">
+                    Add to Site
+                  </DropdownMenuItem>
+                </DialogTrigger>
+
+                <DropdownMenuSeparator />
+                <AlertDialogTrigger className="w-full">
+                  <DropdownMenuItem className="hover:bg-slate-200">
+                    Delete
+                  </DropdownMenuItem>
+                </AlertDialogTrigger>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            <DeleteModel id={value.id} />
+          </AlertDialog>
+
+          <AddToSiteCpt id={value.id} />
+        </Dialog>
+        <div className="">
+          <CardHeader>
+            <CardTitle>{value.name}</CardTitle>
+            <CardDescription>
+              {value.description?.substring(0, 40).concat('...')}
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Link className="text-blue-500 truncate" href={value.url}>
+              {value.url}
+            </Link>
+            </CardContent>
         </div>
-       
-      <Dialog>
-        <AlertDialog>
-        <DropdownMenu>
-  <DropdownMenuTrigger asChild >
-  <Button className="rounded-full" variant={'link'} size={'sm'}>
-  <EllipsisVertical size={'24px'}/>
-            </Button>
-    
-  
-  </DropdownMenuTrigger>
-  <DropdownMenuContent className="bg-white ">
-    <DropdownMenuLabel>Settings</DropdownMenuLabel>
-    <DropdownMenuItem asChild className="hover:bg-slate-200">
-      <Link href={`/dashboard/products/${value.id}/edit`}>Edit</Link>
-    </DropdownMenuItem>
-    <DialogTrigger className="w-full">
-    <DropdownMenuItem className="hover:bg-slate-200"> Add to Site</DropdownMenuItem>
-    </DialogTrigger>
-    
-    <DropdownMenuSeparator />
-      <AlertDialogTrigger className="w-full">
-    <DropdownMenuItem className="hover:bg-slate-200">
-      Delete 
-      </DropdownMenuItem>
-      </AlertDialogTrigger>
-    
-  </DropdownMenuContent>
-</DropdownMenu>
- <DeleteModel id={value.id}></DeleteModel>
- 
- </AlertDialog>
-<AddToSiteCpt id={value.id}></AddToSiteCpt>
-
-</Dialog>
-
-
 
       
       </Card>

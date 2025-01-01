@@ -41,7 +41,7 @@ export default function FormComponent({formType}:{formType: string}) {
     console.log(values);
   }
   return (
-    <Card className="p-16">
+    <Card className="sm:p-16 p-6">
       <CardHeader>
         <h2 className="text-xl font-semibold ">{formType != null && 'Product Detail'}</h2>
       </CardHeader>
