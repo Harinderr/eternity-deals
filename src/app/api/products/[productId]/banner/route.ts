@@ -34,8 +34,7 @@ export async function GET(
   }
 ) {
   const headersMap = headers();
-  const url = new URL(req.url)
-  const requestingUrl = url.searchParams.get('source')  || headersMap.get("referer") || headersMap.get("origin")
+  const requestingUrl = headersMap.get("referer") || headersMap.get("origin") ;
   console.log('this is url',requestingUrl)
   if(requestingUrl == null) return notFound()
   const product = await getProduct(params.productId);

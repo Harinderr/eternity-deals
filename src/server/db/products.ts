@@ -286,7 +286,7 @@ export async function getProductBanner(productId:string,userId:string,code:strin
   const product = await db.query.ProductTable.findFirst({
     where : ({id,url}) => and(eq(id, productId),eq(url,requestingUrl)) 
   })
-  if(product == null) return 
+  if(product == null) return null
   const country = await db.query.CountryTable.findFirst({
   columns : {
     id : true,
@@ -298,7 +298,7 @@ export async function getProductBanner(productId:string,userId:string,code:strin
    
 })
 
-if(country == null) return 
+if(country == null) return  null
 const countryGroup = await db.query.CountryGroupDiscountTable.findFirst({
   columns : {
     discountPercentage : true,
@@ -320,7 +320,7 @@ const productCustomize = await db.query.ProductCustomizationTable.findFirst({
  },
   where : ({productId : pId},{eq}) => eq(pId, productId)
 })
-if(countryGroup == null ||  productCustomize == null) return
+if(countryGroup == null ||  productCustomize == null) return null
  return {
   country,
   countryGroup,

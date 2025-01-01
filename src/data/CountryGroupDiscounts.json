@@ -1,6 +1,6 @@
  [
     {
-      "name": "Parity Group: 0.2-0.3",
+      "name": "Eternity Group I",
       "recommendedDiscountPercentage": 0.6,
       "countries": [
         {
@@ -82,7 +82,7 @@
       ]
     },
     {
-      "name": "Parity Group: 0.3-0.4",
+      "name": "Eternity Group II",
       "recommendedDiscountPercentage": 0.5,
       "countries": [
         {
@@ -320,7 +320,7 @@
       ]
     },
     {
-      "name": "Parity Group: 0.4-0.5",
+      "name": "Eternity Group III",
       "recommendedDiscountPercentage": 0.5,
       "countries": [
         {
@@ -442,7 +442,7 @@
       ]
     },
     {
-      "name": "Parity Group: 0.5-0.6",
+      "name": "Eternity Group: IV",
       "recommendedDiscountPercentage": 0.4,
       "countries": [
         {
@@ -560,7 +560,7 @@
       ]
     },
     {
-      "name": "Parity Group: 0.6-0.7",
+      "name": "Eternity Group: V",
       "recommendedDiscountPercentage": 0.3,
       "countries": [
         {
@@ -634,7 +634,7 @@
       ]
     },
     {
-      "name": "Parity Group: 0.7-0.8",
+      "name": "Eternity Group: VI",
       "recommendedDiscountPercentage": 0.2,
       "countries": [
         {
@@ -700,7 +700,7 @@
       ]
     },
     {
-      "name": "Parity Group: 0.8-0.9",
+      "name": "Eternity Group: VII",
       "countries": [
         {
           "country": "GB",
@@ -749,7 +749,7 @@
       ]
     },
     {
-      "name": "Parity Group: 0.9-1.0",
+      "name": "Eternity Group: VIII",
       "countries": [
         {
           "country": "CA",
@@ -794,7 +794,7 @@
       ]
     },
     {
-      "name": "Parity Group: 1.0-1.1",
+      "name": "Eternity Group: IX",
       "countries": [
         {
           "country": "AU",
@@ -807,7 +807,7 @@
       ]
     },
     {
-      "name": "Parity Group: 1.1-1.2",
+      "name": "Eternity Group: X",
       "countries": [
         {
           "country": "CH",
