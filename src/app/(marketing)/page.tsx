@@ -1,5 +1,3 @@
-import Image from "next/image";
-import NavBar from "./_components/Navbar";
 import { SignUpButton } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, BadgeCheck } from "lucide-react";

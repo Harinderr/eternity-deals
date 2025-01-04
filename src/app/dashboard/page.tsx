@@ -1,5 +1,4 @@
 import { auth } from "@clerk/nextjs/server";
-import Navbar from "./_components/Navbar";
 import { getProducts } from "@/server/db/products";
 import NoProducts from "./_components/NoProducts";
 import ProductList from "./_components/productsList";

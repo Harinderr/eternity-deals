@@ -2,7 +2,7 @@
 
 "use client";
 
-import { Bar, BarChart, XAxis, YAxis } from "recharts";
+import { Bar, BarChart, XAxis} from "recharts";
 
 import {
   ChartConfig,

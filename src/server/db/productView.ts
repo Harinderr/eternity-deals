@@ -5,15 +5,17 @@ import {
   ProductTable,
   ProductViewTable,
 } from "@/drizzle/schema";
-import { getProduct } from "./products";
 import { and, count, desc, eq, gt, gte, SQL, sql, sum } from "drizzle-orm";
 import { startOfDay, subDays } from "date-fns";
 import { fillData } from "@/lib/utils";
-import ProductLimit from "@/app/dashboard/_components/ProductLimit";
 import { cache } from "react";
 import { unstable_cache } from "next/cache";
 import { CACHE_TAGS, getGlobalTag, getIdTag, getUserTag } from "@/lib/cache";
 
+interface ViewData {
+  date: string; // Assuming date is always a string (e.g., 'YYYY-MM' or 'YYYY-MM-DD')
+  views: string; // Assuming views is always a number
+}
 export async function getProductCountryViewCount(
   productId: string | undefined,
   time: string
@@ -91,7 +93,7 @@ export async function createProductViewCount({
   };
   const list = fillData(arr[time as keyof typeof arr]);
   const date = new Date();
-  let output;
+  let output:ViewData[];
   if (time == "last1Year") {
     const lastYearDate = new Date();
     lastYearDate.setFullYear(lastYearDate.getFullYear() - 1); // Subtract one year
@@ -109,7 +111,7 @@ export async function createProductViewCount({
       .from(ProductViewTable)
       .where(and(...condition))
       .groupBy(sql`TO_CHAR(${ProductViewTable.visitedAt}, 'YYYY-MM')`) // Group by formatted date
-      .orderBy(sql`TO_CHAR(${ProductViewTable.visitedAt}, 'YYYY-MM')`); // Sort by formatted date
+      .orderBy(sql`TO_CHAR(${ProductViewTable.visitedAt}, 'YYYY-MM')`) as ViewData[]; // Sort by formatted date
   } else {
     const thirtyDaysAgo = date.setDate(date.getDate() - 30);
     const condition = [gt(ProductViewTable.visitedAt, new Date(thirtyDaysAgo))];
@@ -124,7 +126,7 @@ export async function createProductViewCount({
       .from(ProductViewTable)
       .where(and(...condition))
       .groupBy(sql`DATE(${ProductViewTable.visitedAt})`)
-      .orderBy(sql`DATE(${ProductViewTable.visitedAt})`);
+      .orderBy(sql`DATE(${ProductViewTable.visitedAt})`) as ViewData[];
   }
 
   const modified = list.map((v) => {

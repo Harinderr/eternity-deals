@@ -13,10 +13,11 @@ const CopyToClip = ({ CopyText }: { CopyText: string }) => {
       setTimeout(() => {
         setIsCopied("Copy");
       }, 3000);
-    } catch (error) {
+    } catch {
       setTimeout(() => {
         setIsCopied("Copy");
       }, 3000);
+      
     }
   };
 

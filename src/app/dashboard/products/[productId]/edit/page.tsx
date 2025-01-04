@@ -4,11 +4,10 @@ import { getProduct, getProudctCustomization } from "@/server/db/products";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import BackButton from "@/app/dashboard/_components/BackButton";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { useState } from "react";
 import CountryGroup from "@/app/dashboard/_components/CountryGroup";
 import BannerCustomizeForm from "@/app/dashboard/_components/BannerCustomizeForm";
 import { getUserSubTier } from "@/server/db/subscription";
-import { ProductCustomizationTable, ProductTable } from "@/drizzle/schema";
+
 
 export default async function EditProduct({
   params,

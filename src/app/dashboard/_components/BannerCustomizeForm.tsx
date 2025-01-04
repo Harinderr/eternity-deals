@@ -10,22 +10,17 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
-import { env } from "@/data/env/client";
 import {
   subscriptionTiers,
-  subscriptionTiersInOrder,
   TierNames,
 } from "@/data/subTier";
-import { ProductCustomizationTable } from "@/drizzle/schema";
-import { toast, useToast } from "@/hooks/use-toast";
-import { formSchema, ProductCustomizeSchema } from "@/lib/utils";
+
+import { toast } from "@/hooks/use-toast";
+import {  ProductCustomizeSchema } from "@/lib/utils";
 import { saveCustomiztionData } from "@/server/actions/products";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { subtle } from "crypto";
-import { ReactNode } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import UpgradeAccount from "../../../components/UpgradeAccount";
@@ -47,7 +42,6 @@ const BannerCustomizeForm = ({
 
   }
 }) => {
-  const txt = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero saepe ad sequi rem quo, repellendus odit exercitationem ullam cumque autem velit quis, nostrum voluptates illo voluptatibus quisquam voluptatum, dignissimos non."
   const form = useForm<z.infer<typeof ProductCustomizeSchema>>({
     resolver: zodResolver(ProductCustomizeSchema),
     defaultValues: {...productCustomization, classPrefix : productCustomization.classPrefix ?? ""},

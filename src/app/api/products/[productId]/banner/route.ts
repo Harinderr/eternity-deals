@@ -1,9 +1,6 @@
 import Banner from "@/components/Banner"
-import { env } from "@/data/env/client";
 import { getProduct, getProductBanner } from "@/server/db/products";
 import { createProductViewCount } from "@/server/db/productView";
-import { auth, getAuth } from "@clerk/nextjs/server";
-import { request } from "http";
 import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 import { NextRequest } from "next/server";
@@ -47,7 +44,7 @@ export async function GET(
     requestingUrl
   );
   if (getBannerinfo == null) return notFound();
-  let out = await makeHtmlcontent(getBannerinfo);
+  const out = await makeHtmlcontent(getBannerinfo);
   if (countryCode == null) return notFound()
     await createProductViewCount({productId :product.id,countryId:getBannerinfo.country.id,userId :product.clerkUserId})
   return new Response(out, { headers: { "content-type": "text/javascript","Access-Control-Allow-Origin": "*", } });

@@ -1,16 +1,11 @@
 'use client'
-import BackButton from "@/app/dashboard/_components/BackButton";
-import FormComponent from "@/app/dashboard/_components/FormComponent";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { formSchema } from "@/lib/utils";
-import { FormInput } from "lucide-react";
 import {z} from 'zod'
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
-import { getProduct } from "@/server/db/products";
-import { ProductTable } from "@/drizzle/schema";
 import { updateProduct } from "@/server/actions/products";
 import { toast } from "@/hooks/use-toast";
 const EditFormComponent = ({product}:{

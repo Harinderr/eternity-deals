@@ -1,18 +1,14 @@
 import { auth } from "@clerk/nextjs/server";
-import { getProduct, getProducts } from "@/server/db/products";
+import {  getProducts } from "@/server/db/products";
 import { getCountryViewData, getProductCountryViewCount, getViewsByCountryGroup } from "@/server/db/productView";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
-import { notFound } from "next/navigation";
 import CountryViewsChart from "../_components/CountryViewsChart";
 import ViewsDaysChart from "../_components/ViewsDaysChart";
 import CountryGroupViewChart from "../_components/CountryGroupViewChart";
@@ -48,7 +44,7 @@ export default async function Analytics({
           <DropdownMenuContent className="bg-white">
             {TimeInterval.map((i) => {
               return (
-                <DropdownMenuItem>
+                <DropdownMenuItem key={i} >
                   <Link
                     href={`/dashboard/analytics?product=${product}&time=${i}`}
                   >
@@ -69,7 +65,7 @@ export default async function Analytics({
           <DropdownMenuContent className="bg-white">
             {products.map((i) => {
               return (
-                <DropdownMenuItem>
+                <DropdownMenuItem key={i.name} >
                   <Link
                     href={`/dashboard/analytics?product=${i.name}&time=${time}`}
                   >

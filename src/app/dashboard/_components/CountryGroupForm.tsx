@@ -16,7 +16,6 @@ import { CountryGroupSchema } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { group } from "console";
 import { updateCountryGroupDiscounts } from "@/server/actions/products";
 import { toast } from "@/hooks/use-toast";
 
@@ -43,7 +42,7 @@ const CountryGroupForm = ({
     resolver: zodResolver(CountryGroupSchema),
     defaultValues: {
       groups : countryGroup.map((group)=> {
-        let discount = group.discount?.discountPercentage ?? group.recommendedDiscountPercentage
+        const discount = group.discount?.discountPercentage ?? group.recommendedDiscountPercentage
         return {
           id : group.id,
          discountPercentage : discount != null ? discount : undefined,

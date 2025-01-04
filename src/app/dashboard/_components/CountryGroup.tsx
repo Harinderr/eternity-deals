@@ -1,9 +1,6 @@
 
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { updateCountries, updateCountryGroups } from "@/lib/task"
+import { Card, CardContent } from "@/components/ui/card"
 import { getCountryGroup } from "@/server/db/products"
-import { group } from "console"
-import { useEffect } from "react"
 import CountryGroupForm from "./CountryGroupForm"
 
 const CountryGroup = async ({productId, userId}: {

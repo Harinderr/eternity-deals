@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { getTierPriceId, subscriptionTiers, subscriptionTiersInOrder, TierNames } from '@/data/subTier'
+import {  subscriptionTiersInOrder, TierNames } from '@/data/subTier'
 import { getProductCount } from '@/server/db/products'
 import { getUserSubTier } from '@/server/db/subscription'
 import { auth } from '@clerk/nextjs/server'

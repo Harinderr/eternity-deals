@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/card";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { ProductTable } from "@/drizzle/schema";
 import { EllipsisVertical } from "lucide-react";
 import Link from "next/link";
 import AddToSiteCpt from "./AddToSiteCpt";
