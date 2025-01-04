@@ -62,14 +62,14 @@ export function createURL(
     if (period == 12) {
       const date = new Date(today);
       date.setMonth(today.getMonth() - i);
-      let r = {
+      const r = {
         date: date.toISOString().split("T")[0].split("-").slice(0, 2).join("-"),
       };
       arr.push(r);
     } else {
       const date = new Date(today);
       date.setDate(today.getDate() - i);
-      let r = { date: date.toISOString().split("T")[0] };
+      const r = { date: date.toISOString().split("T")[0] };
       arr.push(r); // Format date as YYYY-MM-DD
     }
   }

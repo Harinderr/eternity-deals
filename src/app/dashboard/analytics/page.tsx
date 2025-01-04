@@ -1,6 +1,6 @@
 import { auth } from "@clerk/nextjs/server";
 import {  getProducts } from "@/server/db/products";
-import { getCountryViewData, getProductCountryViewCount, getViewsByCountryGroup } from "@/server/db/productView";
+import { CHART_INTERVALS, getCountryViewData, getProductCountryViewCount, getViewsByCountryGroup } from "@/server/db/productView";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,14 +17,14 @@ export default async function Analytics({
   searchParams,
 }: {
   searchParams: {
-    time?: string;
+    time?: keyof typeof CHART_INTERVALS;
     product?: string;
   };
 }) {
   const { userId, redirectToSignIn } = await auth();
   if (userId == null) return redirectToSignIn();
   const products = await getProducts(userId);
-  const time : any = searchParams.time ?? "last7days";
+  const time : keyof typeof CHART_INTERVALS  = searchParams.time ?? "last7Days";
   const product = searchParams.product ?? "Allproducts";
   const currentProduct = products.find((i) => i.name === product);
   const TimeInterval = ["last7Days", "last30Days", "last1Year"];

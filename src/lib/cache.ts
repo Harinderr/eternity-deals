@@ -1,4 +1,4 @@
-import { revalidatePath, revalidateTag } from "next/cache";
+import {  revalidateTag } from "next/cache";
 
 export type ValidTags =
   | ReturnType<typeof getGlobalTag>

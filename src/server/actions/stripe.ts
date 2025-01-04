@@ -3,7 +3,6 @@
 import { env as serverEnv } from "@/data/env/server";
 import { env as clientEnv } from "@/data/env/client";
 import { auth, currentUser, User } from "@clerk/nextjs/server";
-import { error } from "console";
 import Stripe from "stripe";
 import { redirect } from "next/navigation";
 import { getUserSubscription } from "../db/subscription";

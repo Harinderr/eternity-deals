@@ -1,8 +1,7 @@
 "use server";
 import { CountryGroupSchema, formSchema, ProductCustomizeSchema } from "@/lib/utils";
 import { auth } from "@clerk/nextjs/server";
-import { error } from "console";
-import { string, z } from "zod";
+import {  z } from "zod";
 import {
   createProductInDb,
   deleteProductFromDB,
@@ -11,13 +10,13 @@ import {
   updateProductDb,
 } from "../db/products";
 import { redirect } from "next/navigation";
-import { boolean } from "drizzle-orm/mysql-core";
+
 
 export async function createProduct(
   formData: z.infer<typeof formSchema>
 ): Promise<{ error: boolean; message: string } | undefined> {
   const { userId } = await auth();
-  const { success, data } = formSchema.safeParse(formData);
+  const { success} = formSchema.safeParse(formData);
   if (!success || userId == null) {
     return { error: true, message: "Can't perform the action right now" };
   }
@@ -29,7 +28,7 @@ export async function updateProduct(
   formData: z.infer<typeof formSchema>
 ): Promise<{ error: boolean; message: string } | undefined> {
   const { userId } = await auth();
-  const { success, data } = formSchema.safeParse(formData);
+  const { success} = formSchema.safeParse(formData);
   if (!success || userId == null) {
     return { error: true, message: "Can't perform the action right now" };
   }
@@ -103,7 +102,7 @@ export async function updateCountryGroupDiscounts(
  
 export async function saveCustomiztionData(formData : z.infer<typeof ProductCustomizeSchema>,productId:string) {
     const {userId} = await auth()
-    const {success , data} =  ProductCustomizeSchema.safeParse(formData)
+    const {success } =  ProductCustomizeSchema.safeParse(formData)
     if(userId == null) {
       return { error : true, message : 'either not authenticated' }
     }

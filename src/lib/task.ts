@@ -2,7 +2,6 @@ import { db } from "@/drizzle/db";
 import countriesByDiscount from "@/data/CountryGroupDiscounts.json";
 import { CountryGroupTable, CountryTable } from "@/drizzle/schema";
 import { sql } from "drizzle-orm";
-import { error } from "console";
 
 const groupCount = await updateCountryGroups();
 const countryCount = await updateCountries();
@@ -18,7 +17,7 @@ export async function updateCountryGroups() {
       return { name, recommendedDiscountPercentage };
     }
   );
-  let {rowCount} = await db
+  const {rowCount} = await db
     .insert(CountryGroupTable)
     .values(data)
     .onConflictDoUpdate({
@@ -38,7 +37,7 @@ export async function updateCountries() {
     name : CountryGroupTable.name
   }).from(CountryGroupTable)
  
-  let data = countriesByDiscount.flatMap(({ countries,name }) => {
+  const data = countriesByDiscount.flatMap(({ countries,name }) => {
     const isValid = countryGroups.find(i => i.name == name)
     if(!isValid) {
       throw new Error('no valid group')

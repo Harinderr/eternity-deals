@@ -1,11 +1,9 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
 
 
 const UpgradeAccount = () => {
-  const router = useRouter()
   return (
    <Card className="mt-8">
     <CardHeader>

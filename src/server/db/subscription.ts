@@ -1,7 +1,7 @@
 import { subscriptionTiers } from "@/data/subTier";
 import { db } from "@/drizzle/db";
 import { ProductTable, UserSubscriptionTable } from "@/drizzle/schema";
-import { CACHE_TAGS, getIdTag, getUserTag, revalidateDbCache } from "@/lib/cache";
+import { CACHE_TAGS, getUserTag, revalidateDbCache } from "@/lib/cache";
 import { eq } from "drizzle-orm";
 import { unstable_cache } from "next/cache";
 import { cache } from "react";

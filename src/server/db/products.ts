@@ -10,15 +10,10 @@ import {
   getUserTag,
   revalidateDbCache,
 } from "@/lib/cache";
-import { formSchema, ProductCustomizeSchema } from "@/lib/utils";
-import { Description } from "@radix-ui/react-toast";
-import { count } from "console";
 import { eq, and, inArray, sql } from "drizzle-orm";
 import { BatchItem } from "drizzle-orm/batch";
-import { Tags } from "lucide-react";
 import { unstable_cache } from "next/cache";
 import { cache } from "react";
-import { number, z } from "zod";
 
 export async function getProducts(userId: string) {
   const cacheFc = cache(
@@ -262,6 +257,7 @@ export async function saveCustomiztionDataToDb(
     userId,
     Id: productId,
   });
+  return rowCount > 0
 }
 
 

@@ -69,7 +69,6 @@ export async function getViewsByCountryGroup(
 export async function createProductViewCount({
   productId,
   countryId,
-  userId,
 }: {
   productId: string;
   countryId: string;
