@@ -13,7 +13,7 @@ console.log(
 export async function updateCountryGroups() {
   const data = countriesByDiscount.map(
     ({ name, recommendedDiscountPercentage: rcp }) => {
-      let recommendedDiscountPercentage = rcp == null ? 0.1 : rcp;
+      const recommendedDiscountPercentage = rcp == null ? 0.1 : rcp;
       return { name, recommendedDiscountPercentage };
     }
   );
