@@ -5,9 +5,6 @@ const nextConfig = {
             dynamic :0
         }
     },
-    typescript : {
-        ignoreBuildErrors : true
-    },
     eslint : {
         ignoreBuildErrors : true
     }
