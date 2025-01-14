@@ -92,7 +92,6 @@ export async function getProductInternals(productId: string, userId?: string) {
   return product;
 }
 
-
 export async function updateProductDb(
   data: Partial<typeof ProductTable.$inferInsert>,
   { id, userId }: { id: string; userId: string }
@@ -257,71 +256,76 @@ export async function saveCustomiztionDataToDb(
     userId,
     Id: productId,
   });
-  return rowCount > 0
+  return rowCount > 0;
 }
 
-
-export async function getProductCount(userId:string){
-  const cacheFc = cache(unstable_cache(getProductCountInternals,undefined,{
-    tags :[ getUserTag(userId, CACHE_TAGS.products),'*']
-  }))
-  return cacheFc(userId)
+export async function getProductCount(userId: string) {
+  const cacheFc = cache(
+    unstable_cache(getProductCountInternals, undefined, {
+      tags: [getUserTag(userId, CACHE_TAGS.products), "*"],
+    })
+  );
+  return cacheFc(userId);
 }
-export async function getProductCountInternals(userId: string):Promise<number> {
+export async function getProductCountInternals(
+  userId: string
+): Promise<number> {
   const output = await db
-    .select({ count : sql<number>`COUNT(*)`.as('count') })
+    .select({ count: sql<number>`COUNT(*)`.as("count") })
     .from(ProductTable)
     .where(eq(ProductTable.clerkUserId, userId));
-     
-    return output[0]?.count
+
+  return output[0]?.count;
 }
 
-
-export async function getProductBanner(productId:string,userId:string,code:string = 'IN',requestingUrl:string) {
-  //,country  group - discount and coupen, product customixation 
+export async function getProductBanner(
+  productId: string,
+  userId: string,
+  code: string = "IN",
+  requestingUrl: string
+) {
+  //,country  group - discount and coupen, product customixation
   const product = await db.query.ProductTable.findFirst({
-    where : ({id,url}) => and(eq(id, productId),eq(url,requestingUrl)) 
-  })
-  if(product == null) return null
+    where: ({ id, url }) => and(eq(id, productId), eq(url, requestingUrl)),
+  });
+  if (product == null) return null;
   const country = await db.query.CountryTable.findFirst({
-  columns : {
-    id : true,
-    countryGroupId: true,
-  },
-   where : ({code : cncode},{and, eq}) => {
-   return  eq(cncode, code)
-   }
-   
-})
+    columns: {
+      id: true,
+      countryGroupId: true,
+    },
+    where: ({ code: cncode }, { and, eq }) => {
+      return eq(cncode, code);
+    },
+  });
 
-if(country == null) return  null
-const countryGroup = await db.query.CountryGroupDiscountTable.findFirst({
-  columns : {
-    discountPercentage : true,
-    coupon : true
-  },
-  where : ({countryGroupId},{eq}) => eq(countryGroupId,country.countryGroupId) 
-})
+  if (country == null) return null;
+  const countryGroup = await db.query.CountryGroupDiscountTable.findFirst({
+    columns: {
+      discountPercentage: true,
+      coupon: true,
+    },
+    where: ({ countryGroupId }, { eq }) =>
+      eq(countryGroupId, country.countryGroupId),
+  });
 
-const productCustomize = await db.query.ProductCustomizationTable.findFirst({
- columns : {
-  classPrefix: true,
-  productId:true,
-  locationMessage: true,
-  backgroundColor:true,
-  textColor: true,
-  fontSize: true,
-  bannerContainer: true,
-  isSticky: true,
- },
-  where : ({productId : pId},{eq}) => eq(pId, productId)
-})
-if(countryGroup == null ||  productCustomize == null) return null
- return {
-  country,
-  countryGroup,
-  productCustomize
-  
- }
-  
+  const productCustomize = await db.query.ProductCustomizationTable.findFirst({
+    columns: {
+      classPrefix: true,
+      productId: true,
+      locationMessage: true,
+      backgroundColor: true,
+      textColor: true,
+      fontSize: true,
+      bannerContainer: true,
+      isSticky: true,
+    },
+    where: ({ productId: pId }, { eq }) => eq(pId, productId),
+  });
+  if (countryGroup == null || productCustomize == null) return null;
+  return {
+    country,
+    countryGroup,
+    productCustomize,
+  };
 }

@@ -33,7 +33,7 @@ export async function GET(
   const headersMap = headers();
   const requestingUrl = headersMap.get("referer") || headersMap.get("origin") ;
   console.log('this is url',requestingUrl)
-  if(requestingUrl == null) return notFound()
+   if (requestingUrl == null) return notFound()
   const product = await getProduct(params.productId);
   if (product == null) return notFound()
   const countryCode = getCountryCode(req)

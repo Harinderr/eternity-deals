@@ -262,7 +262,7 @@ const monthFormatter = new Intl.DateTimeFormat(undefined, {
     const data = await db
       .with(countryViewSq)
       .select({
-        views: sum(countryViewSq.views) ?? "0",
+        views:  sum(countryViewSq.views),
         countryGroup: CountryGroupTable.name,
       })
       .from(CountryGroupTable)
@@ -273,7 +273,6 @@ const monthFormatter = new Intl.DateTimeFormat(undefined, {
       .groupBy(CountryGroupTable.name)
       .orderBy(({ views }) => desc(views));
 
-  
     return data;
   } catch (error) {
     console.error("Error fetching views by country group:", error);

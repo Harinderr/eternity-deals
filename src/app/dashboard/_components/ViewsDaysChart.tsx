@@ -1,6 +1,6 @@
 "use client";
 
-import { Bar, BarChart, XAxis} from "recharts";
+import { Bar, BarChart, XAxis, YAxis} from "recharts";
 
 import {
   ChartConfig,
@@ -23,15 +23,24 @@ const ViewsDaysChart = ({
     }[]
 }) => {
   if (chartData == null || chartData === undefined) return (<h1>no data available</h1>)
-  return (
+    const data  = chartData.map((val,i)=> {
+      return {...val,views : val.views != null ? Number(val.views) : 0,}
+  })
+    return (
     <Card className="mt-4">
         <CardHeader className="text-3xl font-semibold">Day Views History</CardHeader>
         <CardContent>
           <ChartContainer
             config={chartConfig}
-            className="min-h-[200px] mx-auto w-1/3"
+            className="min-h-[200px] mx-auto w-2/3"
           >
-            <BarChart accessibilityLayer data={chartData}>
+            <BarChart accessibilityLayer data={data}>
+            <YAxis
+                        dataKey="views"
+                        tickLine={false}
+                        axisLine={false}
+                        tickFormatter={(value) => `${value}`} // Format values, if necessary
+                      />
           
               <XAxis
                 dataKey="date"
