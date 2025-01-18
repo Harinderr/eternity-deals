@@ -49,7 +49,7 @@ export async function GET(
 
     const data = await response.json();
   const countryCode = data.countryCode
-  console.log(countryCode,data, 'this is ');
+  
   
   // const countryCode = getCountryCode(req)
   const getBannerinfo = await getProductBanner(
