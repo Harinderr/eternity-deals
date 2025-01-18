@@ -6,9 +6,6 @@ import { notFound } from "next/navigation";
 import { NextRequest } from "next/server";
 import { createElement } from "react";
 
-export const config = {
-  runtime: 'edge', // Use the Edge Runtime for this page
-};
 
 interface BannerInfo {
   countryGroup: { discountPercentage: number; coupon: string };
