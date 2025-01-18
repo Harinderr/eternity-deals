@@ -5,6 +5,7 @@ import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 import { NextRequest } from "next/server";
 import { createElement } from "react";
+import axios from 'axios'
 
 
 interface BannerInfo {
@@ -36,7 +37,15 @@ export async function GET(
    if (requestingUrl == null) return notFound()
   const product = await getProduct(params.productId);
   if (product == null) return notFound()
-  const countryCode = getCountryCode(req)
+    const ip =
+  req.headers.get("x-forwarded-for")?.split(",")[0] || // Real IP behind a proxy
+  req?.ip || // Direct connection fallback
+  null;
+  const response = await axios.get(`https://ip-api.com/json/${ip}`);
+  const countryCode = response.data.countryCode; // Example: "US"
+  console.log(countryCode, 'this is ');
+  
+  // const countryCode = getCountryCode(req)
   const getBannerinfo = await getProductBanner(
     product.id,
     product.clerkUserId,
@@ -45,21 +54,14 @@ export async function GET(
   );
   if (getBannerinfo == null) return notFound();
   const out = await makeHtmlcontent(getBannerinfo);
-  console.log('content send')
-  if (countryCode == null) {
-    console.log('countrycode not found',countryCode)
-    return notFound()
-  }
-    
+  if (countryCode == null) return notFound()
     await createProductViewCount({productId :product.id,countryId:getBannerinfo.country.id,userId :product.clerkUserId})
   return new Response(out, { headers: { "content-type": "text/javascript","Access-Control-Allow-Origin": "*", } });
 }
 
 async function makeHtmlcontent(BannerInfo: BannerInfo) {
   const { renderToStaticMarkup } = await import("react-dom/server")
-  console.log('process start');
-  
-  return `
+ return `
   const banner = document.createElement('div');
   banner.innerHTML = '${renderToStaticMarkup(
     createElement(Banner,{
