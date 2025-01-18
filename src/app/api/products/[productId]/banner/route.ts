@@ -45,7 +45,12 @@ export async function GET(
   );
   if (getBannerinfo == null) return notFound();
   const out = await makeHtmlcontent(getBannerinfo);
-  if (countryCode == null) return notFound()
+  console.log('content send')
+  if (countryCode == null) {
+    console.log('countrycode not found',countryCode)
+    return notFound()
+  }
+    
     await createProductViewCount({productId :product.id,countryId:getBannerinfo.country.id,userId :product.clerkUserId})
   return new Response(out, { headers: { "content-type": "text/javascript","Access-Control-Allow-Origin": "*", } });
 }
