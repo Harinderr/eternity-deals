@@ -41,11 +41,15 @@ export async function GET(
   req.headers.get("x-forwarded-for")?.split(",")[0] || // Real IP behind a proxy
   req?.ip || // Direct connection fallback
   null;
-  console.log(ip,'this is ip')
-  const response = await axios.get(`https://ip-api.com/json/${ip}`);
-console.log(response.data,'this is data')
-  const countryCode = response.data.countryCode; // Example: "US"
-  console.log(countryCode, 'this is ');
+  const response = await fetch(`http://ip-api.com/json/${ip}`);
+
+    if (!response.ok) {
+      throw new Error(`Error from ip-api: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+  const countryCode = data.countryCode
+  console.log(countryCode,data, 'this is ');
   
   // const countryCode = getCountryCode(req)
   const getBannerinfo = await getProductBanner(
